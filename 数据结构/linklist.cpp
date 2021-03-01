@@ -17,6 +17,7 @@ bool LinkListInsert(int elem,LinkList &l) //there is headinsert
     tmp->data = elem;
     tmp->next = l->next;
     l->next = tmp;
+    l->data++;
     return true;
 }
 bool LinkListDelete(int elem,LinkList &l)
@@ -60,7 +61,13 @@ int LocateElem(int elem,LinkList l)
 }
 bool DestroyLinkList(LinkList &l)
 {
-    delete l;
+    Node *tmp;
+    while(l->next != NULL)
+    {
+        tmp = l->next;
+        delete l;
+        l = tmp;
+    }
     return true;
 }
 void PrintLinkList(LinkList l)
