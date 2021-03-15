@@ -21,14 +21,35 @@ void getnext(int next[],string sc)
         }
     }
 }
+void getnextval(int next[],string sc)
+{
+    int i,n;
+    int nextval[MaxSize];
+    n = sc.length();
+    for(i = 1; i < n; i++)
+    {
+        if(sc[i] == sc[next[i]])
+        nextval[i] = nextval[next[i]];
+        else
+        nextval[i] = next[i];
+    }
+    for(i = 0; i < n; i++)
+    cout<<nextval[i]<<' ';
+    cout<<endl;
+    return;
+}
 int KMP(string s,string sc)
 {
     int n,i,m,ans = 0,k;
     int next[MaxSize];
     n = sc.length();
     m = s.length();
-    k = -1,i = 0;
     getnext(next,sc);
+    for(i = 0; i < n; i++)
+    cout<<next[i]<<' ';
+    cout<<endl;
+    getnextval(next,sc);
+    k = -1,i = 0;
     while(i < m)
     {
         if(sc[k] == s[i] || k == -1)
