@@ -46,13 +46,31 @@ bool addnode(Btree head, int elem)
     tmp->rchild = child,tmp->rnum++;
     return true;
 }
-void xh(Btree head)
+void PreOder(Btree head)
 {
     cout<<head->elem<<' ';
     if(head->lchild != NULL)
-    xh(head->lchild);
+    PreOder(head->lchild);
     if(head->rchild != NULL)
-    xh(head->rchild);
+    PreOder(head->rchild);
+    return;
+}
+void InOder(Btree head)
+{
+    if(head->lchild != NULL)
+    PreOder(head->lchild);
+    cout<<head->elem<<' ';
+    if(head->rchild != NULL)
+    PreOder(head->rchild);
+    return;
+}
+void PostOder(Btree head)
+{
+    if(head->lchild != NULL)
+    PreOder(head->lchild);
+    if(head->rchild != NULL)
+    PreOder(head->rchild);
+    cout<<head->elem<<' ';
     return;
 }
 void droptree(Btree head)
@@ -81,7 +99,12 @@ int main()
         cin>>tmp;
         addnode(head,tmp);
     }
-    xh(head);
+    PreOder(head);
+    cout<<endl;
+    InOder(head);
+    cout<<endl;
+    PostOder(head);
+    cout<<endl;
     droptree(head);
     return 0;
 }
